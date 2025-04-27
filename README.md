@@ -7,7 +7,7 @@
 ## Project Preview and explanation
 
 
-## Technologies:
+## Technologies Front End:
 * React / JavaScript / TypeScript
 * React Hook Form + Zod
 * React Query(Tanstack Query), Axios
