@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+:root {
+  /* Borders and shadows */
+  --border-radius: .5rem;
+  --border-color: rgba(0, 0, 0, .5);
+  --box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}

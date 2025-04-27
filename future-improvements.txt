@@ -1,0 +1,24 @@
+appearence none
+width rem
+height rem
+
+:checked
+:checked::before
+  content   emoji unicod check mark 
+               font size
+
+cuidar outline de tab, quando :focus
+   usando space?
+
+----------------------------------------
+request interceptors, tipo bearer token
+response interceptors, tipo response error handling global?
+
+==possibilidades
+bg-amber-500 actions more dark
+bg-amber-100 background light
+bg-amber-100 background error final
+
+hover do 500: 400
+hover de outros: 50 se n tiver incluso no bg
+                 200 se tiver incluso
