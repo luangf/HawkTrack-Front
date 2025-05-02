@@ -11,6 +11,7 @@
 ![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
 ![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide-F56565?style=for-the-badge&logo=lucide&logoColor=white)
 
 <p align="center">
  <a href="#about">About</a> • 
@@ -19,6 +20,7 @@
 </p>
 
 <h2 id="about">📌 About</h2>
+
 * Front End part of my personal HawkTrack project that I built.
 * Here's the link to the Back End:
 * https://github.com/luangf/HawkTrack-Back
@@ -26,14 +28,12 @@
 
 <h2 id="project-preview">Project Preview; some photos</h2>
 
-![01](https://github.com/user-attachments/assets/d09a9659-0133-4a55-8069-175a94a2ffee)
-![02](https://github.com/user-attachments/assets/7e92d497-f78b-47f2-ad92-284106e5c344)
-![03](https://github.com/user-attachments/assets/5f4fcf2d-a3f2-4139-9b06-19349c86b137)
+<img src="https://github.com/user-attachments/assets/d09a9659-0133-4a55-8069-175a94a2ffee" alt="Project image" width="400px">
+<img src="https://github.com/user-attachments/assets/7e92d497-f78b-47f2-ad92-284106e5c344" alt="Project image" width="400px">
+<img src="https://github.com/user-attachments/assets/5f4fcf2d-a3f2-4139-9b06-19349c86b137" alt="Project image" width="400px">
 
-## More technologies used Front End:
-* Lucide(Icons)
+<h2 id="old-versions">Old versions of the same project, made in different ways</h2>
 
-<h2 id="old-versions">Old versions of the same project, made in different ways, just out of curiosity</h2>
 Com HTML + CSS + JS
 * https://github.com/luangf/talkovia-front-vAntigaComJS-HTML-CSS
 
