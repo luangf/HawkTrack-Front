@@ -16,7 +16,7 @@
 <p align="center">
  <a href="#about">About</a> • 
  <a href="#project-preview">Project Preview</a> • 
-  <a href="#old-versions">Old versions</a> • 
+  <a href="#old-versions">Old versions</a>
 </p>
 
 <h2 id="about">📌 About</h2>
