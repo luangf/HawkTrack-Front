@@ -19,11 +19,14 @@
     "@tailwindcss/vite": "^4.1.3",
     "@tanstack/react-query": "^5.74.4",
     "axios": "^1.8.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
     "react-router-dom": "^7.5.0",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.1.3",
     "talkovia-front-react-ts": "file:",
     "zod": "^3.24.3"
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@eslint/js": "^9.22.0",
     "@tanstack/eslint-plugin-query": "^5.73.3",
+    "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",
@@ -40,6 +44,7 @@
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
+    "tw-animate-css": "^1.2.8",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1"
