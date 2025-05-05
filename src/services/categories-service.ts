@@ -1,4 +1,4 @@
-import { CategoryDataGET, CategoryDataPOST, CategoryDataPUT } from "../interface/CategoryData";
+import { CategoryDataGET, CategoryDataPOST, CategoryDataPUT } from "../interface/categoryData";
 import { api } from "./api-config";
 
 const ENDPOINT_URL: string = "/categories";

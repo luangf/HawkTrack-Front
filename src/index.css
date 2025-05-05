@@ -9,6 +9,7 @@
   --border-color: rgba(0, 0, 0, .5);
   --box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
   --radius: 0.625rem;
+  /* ----- */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

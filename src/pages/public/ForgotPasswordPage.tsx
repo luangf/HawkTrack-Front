@@ -1,50 +1,22 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import AuthenticateHeader from "../../components/AuthenticateHeader";
-import { useState } from "react";
-import ErrorFinalMsg from "../../components/ErrorFinalMsg";
-import Label from "../../components/Label";
-import FieldErrorMsg from "../../components/FieldErrorMsg";
-import PrimaryButton from "../../components/PrimaryButton";
+import useForgotPasswordPage from "@/hooks/useForgotPasswordPage";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAuthMutate } from "../../hooks/useAuthMutate";
-import LoginFlowWrapper from "../../components/LoginFlowWrapper";
+import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";
+import LoginFlowWrapper from "../../components/auth-flow/LoginFlowWrapper";
+import ErrorFinalMsg from "../../components/general/ErrorFinalMsg";
+import FieldErrorMsg from "../../components/general/FieldErrorMsg";
+import Label from "../../components/general/Label";
+import PrimaryButton from "../../components/general/PrimaryButton";
 
-const forgotPasswordSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .max(254, { message: "Email must be at most 254 characters" })
-    .email({ message: "Email invalid" }),
-});
-
-export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
-
-function ForgotPasswordPage() {
-  const [loginFailError, setLoginFailError] = useState<boolean>(false);
-
+export default function ForgotPasswordPage() {
   const {
+    loginFailError,
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<ForgotPasswordSchema>({
-    resolver: zodResolver(forgotPasswordSchema),
-  });
-
-  const { mutateForgotPasswordPost } = useAuthMutate();
-
-  function onSubmit(data: ForgotPasswordSchema) {
-    mutateForgotPasswordPost.mutate(data, {
-      onSuccess: (response) => {
-        console.log(response);
-      },
-      onError: () => {
-        setLoginFailError(true);
-      },
-    });
-  }
+    errors,
+    isSubmitting,
+    handleForgot,
+  } = useForgotPasswordPage();
 
   return (
     <LoginFlowWrapper>
@@ -57,7 +29,7 @@ function ForgotPasswordPage() {
       )}
       <form
         className="flex w-full flex-col gap-4"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleForgot)}
       >
         <div className="flex flex-col">
           <Label htmlFor="email">
@@ -87,10 +59,14 @@ function ForgotPasswordPage() {
         className="underline hover:rounded-[var(--border-radius)] hover:bg-amber-100"
         to="/"
       >
+        (TEST) go to the next logic
+      </Link>
+      <Link
+        className="underline hover:rounded-[var(--border-radius)] hover:bg-amber-100"
+        to="/"
+      >
         Return to Login Page
       </Link>
     </LoginFlowWrapper>
   );
 }
-
-export default ForgotPasswordPage;

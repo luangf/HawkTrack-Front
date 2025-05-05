@@ -1,8 +1,8 @@
 import { CircleX } from "lucide-react";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
+import Footer from "../../components/general/Footer";
 
-function ErrorPage() {
+export default function ErrorPage() {
   return (
     <div className="flex h-screen flex-col">
       <div className="flex flex-1 flex-col items-center justify-center gap-6 text-4xl font-bold">
@@ -21,5 +21,3 @@ function ErrorPage() {
     </div>
   );
 }
-
-export default ErrorPage;

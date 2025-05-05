@@ -1,4 +1,4 @@
-import { CategoryDataGET } from "../../interface/CategoryData";
+import useCategoryCard from "@/hooks/useCategoryCard";
 import {
   ExternalLink,
   FolderPen,
@@ -8,58 +8,37 @@ import {
   Trash2,
   Undo2,
 } from "lucide-react";
-import { useCategoryMutate } from "../../hooks/useCategoryMutate";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import FieldErrorMsg from "../FieldErrorMsg";
+import { CategoryDataGET } from "../../interface/categoryData";
+import FieldErrorMsg from "../general/FieldErrorMsg";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import { Toaster } from "../ui/sonner";
 
 interface CategoryCardProps {
   category: CategoryDataGET;
 }
 
-const categoryCardSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, { message: "Name is required" })
-    .max(100, { message: "Name must be at most 100 characters" }),
-  description: z
-    .string()
-    .trim()
-    .max(750, { message: "Description must be at most 750 characters" })
-    .optional(),
-});
-
-type CategoryCardSchema = z.infer<typeof categoryCardSchema>;
-
 function CategoryCard({ category }: CategoryCardProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<CategoryCardSchema>({
-    resolver: zodResolver(categoryCardSchema),
-  });
-
-  const [disabledFields, setDisabledFields] = useState<boolean>(true);
-
-  const { mutateDelete, mutateUpdate } = useCategoryMutate();
-
-  function onOpenCategoryClick(): void {
-    console.log("test");
-  }
-
-  function onSaveEditClick(id: number, data: CategoryCardSchema) {
-    mutateUpdate.mutate({ id, data });
-  }
-
-  function deleteCategoryById(id: number) {
-    if (confirm("quer realmente deletar?")) {
-      mutateDelete.mutate(id);
-    }
-  }
+    errors,
+    disabledFields,
+    handleSaveWhileEditMode,
+    handleDeleteCategory,
+    handleReturnFromEditMode,
+    handleEditButton,
+    handleOpenCategory,
+  } = useCategoryCard();
 
   return (
     <form className="my-2 flex w-full max-w-3xl flex-col gap-3 rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-white p-3 shadow-[var(--box-shadow)]">
@@ -102,9 +81,7 @@ function CategoryCard({ category }: CategoryCardProps) {
           <button
             className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-yellow-500 shadow-[var(--box-shadow)]"
             type="button"
-            onClick={() => {
-              setDisabledFields((prev) => !prev);
-            }}
+            onClick={handleEditButton}
           >
             <Pencil size={40} />
           </button>
@@ -113,8 +90,7 @@ function CategoryCard({ category }: CategoryCardProps) {
             className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-green-500 shadow-[var(--box-shadow)]"
             type="button"
             onClick={handleSubmit((data) => {
-              onSaveEditClick(category.id, data);
-              setDisabledFields((prev) => !prev);
+              handleSaveWhileEditMode(category.id, data);
             })}
           >
             <Save size={40} />
@@ -125,25 +101,46 @@ function CategoryCard({ category }: CategoryCardProps) {
           <button
             className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-purple-400 shadow-[var(--box-shadow)]"
             type="button"
-            onClick={() => setDisabledFields((prev) => !prev)}
+            onClick={handleReturnFromEditMode}
           >
             <Undo2 size={40} />
           </button>
         )}
-        <button
-          className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-red-500 shadow-[var(--box-shadow)]"
-          type="button"
-          onClick={() => deleteCategoryById(category.id)}
-        >
-          <Trash2 size={40} />
-        </button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button
+              className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-red-500 shadow-[var(--box-shadow)]"
+              type="button"
+            >
+              <Trash2 size={40} />
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete your
+                category and remove the data from our servers.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => handleDeleteCategory(category.id)}
+              >
+                Continue
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
         <button
           className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-amber-700 shadow-[var(--box-shadow)]"
           type="button"
-          onClick={() => onOpenCategoryClick()}
+          onClick={handleOpenCategory}
         >
           <ExternalLink size={40} />
         </button>
+        <Toaster richColors position="top-center" />
       </div>
     </form>
   );

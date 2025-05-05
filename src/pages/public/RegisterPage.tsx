@@ -1,10 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import OrDivide from "../../components/OrDivide";
-import AuthenticateWith from "../../components/AuthenticateWith";
-import AuthenticateHeader from "../../components/AuthenticateHeader";
-import ErrorFinalMsg from "../../components/ErrorFinalMsg";
-import { useState } from "react";
+import useRegisterPage from "@/hooks/useRegisterPage";
 import {
   Check,
   Circle,
@@ -15,96 +9,27 @@ import {
   LoaderCircle,
   X,
 } from "lucide-react";
-import Label from "../../components/Label";
-import FieldErrorMsg from "../../components/FieldErrorMsg";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import PrimaryButton from "../../components/PrimaryButton";
-import { useAuthMutate } from "../../hooks/useAuthMutate";
-import LoginFlowWrapper from "../../components/LoginFlowWrapper";
+import { Link } from "react-router-dom";
+import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";
+import AuthenticateWith from "../../components/auth-flow/AuthenticateWith";
+import LoginFlowWrapper from "../../components/auth-flow/LoginFlowWrapper";
+import OrDivide from "../../components/auth-flow/OrDivide";
+import ErrorFinalMsg from "../../components/general/ErrorFinalMsg";
+import FieldErrorMsg from "../../components/general/FieldErrorMsg";
+import Label from "../../components/general/Label";
+import PrimaryButton from "../../components/general/PrimaryButton";
 
-const registerSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .max(254, { message: "Email must be at most 254 characters" })
-    .email({ message: "Email invalid" }),
-  username: z
-    .string()
-    .trim()
-    .min(3, { message: "Username must be at least 3 characters" })
-    .max(30, { message: "Username must be at most 30 characters" }),
-  password: z
-    .string()
-    .min(12, { message: "Password must be at least 12 characters" })
-    .max(140, { message: "Password must be at most 140 characters" })
-    .refine((val) => /[A-Z]/.test(val), {
-      message: "Password must contain at least one uppercase letter",
-    })
-    .refine((val) => /[a-z]/.test(val), {
-      message: "Password must contain at least one lowercase letter",
-    })
-    .refine((val) => /[0-9]/.test(val), {
-      message: "Password must contain at least one number",
-    })
-    .refine((val) => /[!@#$%^&*(),.?":{}|<>_\-+=~`[\]\\;/]/.test(val), {
-      message: "Password must contain at least one special character",
-    }),
-  rememberMeCheckbox: z.boolean(),
-  agreeCheckbox: z
-    .boolean({ message: "Agreement of Terms of Service is required" })
-    .refine((val) => val === true, {
-      message: "Agreement of Terms of Service is required",
-    }),
-});
-
-export type RegisterSchema = z.infer<typeof registerSchema>;
-
-function RegisterPage() {
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const [loginFailError, setLoginFailError] = useState<boolean>(false);
-
+export default function RegisterPage() {
   const {
+    passwordVisible,
+    loginFailError,
     register,
     handleSubmit,
-    setFocus,
-    formState: { errors, isSubmitting },
-  } = useForm<RegisterSchema>({ resolver: zodResolver(registerSchema) });
-
-  const navigate = useNavigate();
-  const { mutateRegisterPost } = useAuthMutate();
-
-  function onSubmit(data: RegisterSchema): void {
-    mutateRegisterPost.mutate(data, {
-      onSuccess: (response) => {
-        sessionStorage.setItem("username", response.data.username);
-        sessionStorage.setItem("auth-token", response.data.token);
-        navigate("/home");
-      },
-      onError: () => {
-        setLoginFailError(true);
-      },
-    });
-  }
-
-  function onPasswordVisibleClick(): void {
-    setPasswordVisible((prevPasswordVisible) => !prevPasswordVisible);
-    // * Solução que achei para consertar o cursor indo para o inicio sempre devido ao setFocus do React Hook Form, !melhorar depois / tirar!
-    // Usar setTimeout para garantir que o foco e o cursor sejam aplicados após a mudança de estado
-    setTimeout(() => {
-      const passwordInput = document.getElementById(
-        "password",
-      ) as HTMLInputElement;
-      if (passwordInput) {
-        const cursorPosition =
-          passwordInput.selectionStart || passwordInput.value.length; // Pega a posição atual do cursor ou final do texto
-        setFocus("password");
-        passwordInput.setSelectionRange(cursorPosition, cursorPosition); // Restaura a posição do cursor
-      }
-    }, 0);
-  }
-
-  console.log(errors.password);
+    errors,
+    isSubmitting,
+    handleRegister,
+    handlePasswordVisible,
+  } = useRegisterPage();
 
   return (
     <LoginFlowWrapper>
@@ -119,7 +44,7 @@ function RegisterPage() {
 
       <form
         className="flex w-full flex-col gap-4"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleRegister)}
       >
         <div className="flex flex-col gap-1">
           <Label htmlFor="email">
@@ -164,7 +89,7 @@ function RegisterPage() {
               placeholder="Password"
             />
             <button
-              onClick={onPasswordVisibleClick}
+              onClick={handlePasswordVisible}
               type="button"
               className={`flex cursor-pointer items-center justify-center rounded-r-[var(--border-radius)] border-2 border-l-0 border-gray-300 bg-gray-50 px-2 hover:bg-amber-50 ${errors.password ? "border-red-500" : ""}`}
             >
@@ -297,5 +222,3 @@ function RegisterPage() {
     </LoginFlowWrapper>
   );
 }
-
-export default RegisterPage;

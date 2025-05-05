@@ -1,83 +1,26 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import OrDivide from "../../components/OrDivide";
-import AuthenticateWith from "../../components/AuthenticateWith";
-import AuthenticateHeader from "../../components/AuthenticateHeader";
-import ErrorFinalMsg from "../../components/ErrorFinalMsg";
+import useLoginPage from "@/hooks/useLoginPage";
 import { Eye, EyeClosed, LoaderCircle } from "lucide-react";
-import { useState } from "react";
-import Label from "../../components/Label";
-import PrimaryButton from "../../components/PrimaryButton";
-import FieldErrorMsg from "../../components/FieldErrorMsg";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuthMutate } from "../../hooks/useAuthMutate";
-import LoginFlowWrapper from "../../components/LoginFlowWrapper";
+import { Link } from "react-router-dom";
+import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";
+import AuthenticateWith from "../../components/auth-flow/AuthenticateWith";
+import LoginFlowWrapper from "../../components/auth-flow/LoginFlowWrapper";
+import OrDivide from "../../components/auth-flow/OrDivide";
+import ErrorFinalMsg from "../../components/general/ErrorFinalMsg";
+import FieldErrorMsg from "../../components/general/FieldErrorMsg";
+import Label from "../../components/general/Label";
+import PrimaryButton from "../../components/general/PrimaryButton";
 
-const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "Email is required" })
-    .max(254, { message: "Email must be at most 254 characters" })
-    .email({ message: "Email invalid" }),
-  password: z
-    .string()
-    .min(12, { message: "Password must be at least 12 characters" })
-    .max(140, { message: "Password must be at most 140 characters" }),
-  rememberMeCheckbox: z.boolean(),
-});
-
-export type LoginSchema = z.infer<typeof loginSchema>;
-
-function LoginPage() {
-  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const [loginFailError, setLoginFailError] = useState<boolean>(false);
-
+export default function LoginPage() {
   const {
+    passwordVisible,
+    loginFailError,
     register,
     handleSubmit,
-    setFocus,
-    formState: { errors, isSubmitting },
-  } = useForm<LoginSchema>({
-    resolver: zodResolver(loginSchema),
-    defaultValues: {
-      email: "emailtest@gmail.com",
-      password: "123456789101112",
-    },
-  });
-
-  const { mutateLoginPost } = useAuthMutate();
-
-  function onSubmit(data: LoginSchema) {
-    mutateLoginPost.mutate(data, {
-      onSuccess: (response) => {
-        sessionStorage.setItem("username", response.data.username);
-        sessionStorage.setItem("auth-token", response.data.token);
-        navigate("/home");
-      },
-      onError: () => {
-        setLoginFailError(true);
-      },
-    });
-  }
-
-  function onPasswordVisibleClick() {
-    setPasswordVisible((prevState: boolean) => !prevState);
-    // * Solução que achei para consertar o cursor indo para o inicio sempre devido ao setFocus do React Hook Form, !melhorar depois / tirar!
-    // Usar setTimeout para garantir que o foco e o cursor sejam aplicados após a mudança de estado
-    setTimeout(() => {
-      const passwordInput = document.getElementById(
-        "password",
-      ) as HTMLInputElement;
-      if (passwordInput) {
-        const cursorPosition =
-          passwordInput.selectionStart || passwordInput.value.length; // Pega a posição atual do cursor ou final do texto
-        setFocus("password");
-        passwordInput.setSelectionRange(cursorPosition, cursorPosition); // Restaura a posição do cursor
-      }
-    }, 0);
-  }
+    errors,
+    isSubmitting,
+    handleLogin,
+    handlePasswordVisible,
+  } = useLoginPage();
 
   return (
     <LoginFlowWrapper>
@@ -89,11 +32,9 @@ function LoginPage() {
           Login failed. Please check your email and password. Or unknown error.
         </ErrorFinalMsg>
       )}
-      {/*<h1>emailtest@gmail.com</h1>
-            <h1>123456789101112</h1>*/}
       <form
         className="flex w-full flex-col gap-4"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleLogin)}
       >
         <div className="flex flex-col">
           <Label htmlFor="email">
@@ -124,7 +65,7 @@ function LoginPage() {
               placeholder="Password"
             />
             <button
-              onClick={onPasswordVisibleClick}
+              onClick={handlePasswordVisible}
               type="button"
               className={`flex cursor-pointer items-center justify-center rounded-r-[var(--border-radius)] border-2 border-l-0 border-gray-300 bg-gray-50 px-2 hover:bg-amber-50 ${errors.password ? "border-red-500" : ""}`}
             >
@@ -179,5 +120,3 @@ function LoginPage() {
     </LoginFlowWrapper>
   );
 }
-
-export default LoginPage;

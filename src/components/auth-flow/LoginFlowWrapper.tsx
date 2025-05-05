@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import Footer from "./Footer";
+import Footer from "../general/Footer";
 
 interface LoginFlowWrapperProps {
   children: ReactNode;

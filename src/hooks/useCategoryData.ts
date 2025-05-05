@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllCategories } from "../services/categories-service";
-import { CategoryDataGET } from "../interface/CategoryData";
+import { CategoryDataGET } from "../interface/categoryData";
 
 export function useCategoryData() {
     const query = useQuery<CategoryDataGET[]>({

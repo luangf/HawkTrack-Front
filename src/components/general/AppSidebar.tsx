@@ -24,7 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useCategoryData } from "@/hooks/useCategoryData";
-import { CategoryDataGET } from "@/interface/CategoryData";
+import { CategoryDataGET } from "@/interface/categoryData";
 import {
   ArrowBigRight,
   ChevronUp,

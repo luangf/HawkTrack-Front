@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Google from "../assets/google.svg";
-import PrimaryButton from "./PrimaryButton";
+import Google from "@/assets/google.svg";
+import PrimaryButton from "../general/PrimaryButton";
 
 interface AuthenticateWithProps {
   children: ReactNode;

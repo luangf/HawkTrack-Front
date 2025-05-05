@@ -1,5 +1,5 @@
 import { Funnel, LoaderCircle, MailWarning, Search } from "lucide-react";
-import { CategoryDataGET } from "../../interface/CategoryData";
+import { CategoryDataGET } from "../../interface/categoryData";
 import CategoryCard from "./CategoryCard";
 import { useCategoryData } from "../../hooks/useCategoryData";
 

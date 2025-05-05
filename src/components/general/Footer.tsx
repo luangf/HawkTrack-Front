@@ -3,10 +3,10 @@ import { BookOpenText, Cookie, Languages, X } from "lucide-react";
 import { useState } from "react";
 
 function Footer() {
-  const [cookieModalActive, setCookieModalActive] = useState<boolean>(false);
+  const [cookieModalActive, setCookieModalActive] = useState(false);
 
-  function onBtnCookieClick(): void {
-    setCookieModalActive((previousValue: boolean) => !previousValue);
+  function onBtnCookieClick() {
+    setCookieModalActive((previousValue) => !previousValue);
   }
 
   return (
