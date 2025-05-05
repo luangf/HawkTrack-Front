@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/general/AppSidebar";
-import { ModeToggle } from "@/components/mode-toggle";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/ui/mode-toggle";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,

@@ -1,12 +1,12 @@
 import useForgotPasswordPage from "@/hooks/useForgotPasswordPage";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";
-import LoginFlowWrapper from "../../components/auth-flow/LoginFlowWrapper";
-import ErrorFinalMsg from "../../components/general/ErrorFinalMsg";
-import FieldErrorMsg from "../../components/general/FieldErrorMsg";
-import Label from "../../components/general/Label";
-import PrimaryButton from "../../components/general/PrimaryButton";
+import AuthenticateHeader from "../../../components/auth-flow/AuthenticateHeader";
+import LoginFlowWrapper from "../../../components/auth-flow/LoginFlowWrapper";
+import ErrorFinalMsg from "../../../components/general/ErrorFinalMsg";
+import FieldErrorMsg from "../../../components/general/FieldErrorMsg";
+import Label from "../../../components/general/Label";
+import PrimaryButton from "../../../components/general/PrimaryButton";
 
 export default function ForgotPasswordPage() {
   const {

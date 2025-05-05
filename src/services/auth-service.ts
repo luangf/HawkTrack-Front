@@ -1,4 +1,4 @@
-import { ForgotPasswordSchema } from "../pages/public/ForgotPasswordPage";
+import { ForgotPasswordSchema } from "../pages/public/forgot-pass/ForgotPasswordPage";
 import { LoginSchema } from "../pages/public/LoginPage";
 import { RegisterSchema } from "../pages/public/RegisterPage";
 import { api } from "./api-config";

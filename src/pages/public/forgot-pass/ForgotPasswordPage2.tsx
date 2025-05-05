@@ -2,7 +2,7 @@ import LoginFlowWrapper from "@/components/auth-flow/LoginFlowWrapper";
 import { MailPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function PosForgotPasswordPage() {
+export default function ForgotPasswordPage2() {
   return (
     <LoginFlowWrapper>
       <MailPlus size={50} />
