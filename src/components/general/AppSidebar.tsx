@@ -23,7 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCategoryData } from "@/hooks/useCategoryData";
+import { useCategoryData } from "@/hooks/category/useCategoryData";
 import { CategoryDataGET } from "@/interface/categoryData";
 import {
   ArrowBigRight,
@@ -62,7 +62,7 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <Link to="/home">
+        <Link to="/category">
           <img src={Logo} alt="Logo" className="w-26" />
         </Link>
       </SidebarHeader>
@@ -74,7 +74,7 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link to="/home">
+                  <Link to="/category">
                     <ListCollapse />
                     See All Categories
                   </Link>

@@ -1,7 +1,7 @@
 import { Funnel, LoaderCircle, MailWarning, Search } from "lucide-react";
 import { CategoryDataGET } from "../../interface/categoryData";
 import CategoryCard from "./CategoryCard";
-import { useCategoryData } from "../../hooks/useCategoryData";
+import { useCategoryData } from "@/hooks/category/useCategoryData";
 
 function AllCardsCategories() {
   const { isPending, isError, data, error } = useCategoryData();

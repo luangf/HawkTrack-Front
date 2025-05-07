@@ -1,4 +1,4 @@
-import useRegisterPage from "@/hooks/useRegisterPage";
+import useRegisterPage from "@/hooks/auth/useRegisterPage";
 import {
   Check,
   Circle,

@@ -1,9 +1,10 @@
 import { categoryCardSchema, CategoryCardSchema } from "@/schemas/categorySchema";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCategoryMutate } from "./useCategoryMutate";
+import { useCategoryMutate } from "@/hooks/category/useCategoryMutate"
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 export default function useCategoryCard() {
     const {
@@ -16,6 +17,7 @@ export default function useCategoryCard() {
 
     const [disabledFields, setDisabledFields] = useState(true);
     const { mutateDelete, mutateUpdate } = useCategoryMutate();
+    const navigate = useNavigate();
 
     function handleSaveWhileEditMode(id: number, data: CategoryCardSchema) {
         mutateUpdate.mutate({ id, data });
@@ -35,8 +37,8 @@ export default function useCategoryCard() {
         setDisabledFields((prev) => !prev);
     }
 
-    function handleOpenCategory() {
-        console.log("test");
+    function handleOpenCategory(id: number) {
+        navigate(`/category/${id}`);
     }
 
     return { register, handleSubmit, errors, disabledFields, handleSaveWhileEditMode, handleDeleteCategory, handleReturnFromEditMode, handleEditButton, handleOpenCategory }

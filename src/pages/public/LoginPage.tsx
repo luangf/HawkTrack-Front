@@ -1,4 +1,4 @@
-import useLoginPage from "@/hooks/useLoginPage";
+import useLoginPage from "@/hooks/auth/useLoginPage";
 import { Eye, EyeClosed, LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";

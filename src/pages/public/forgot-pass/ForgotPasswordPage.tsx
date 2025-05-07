@@ -1,4 +1,4 @@
-import useForgotPasswordPage from "@/hooks/useForgotPasswordPage";
+import useForgotPasswordPage from "@/hooks/auth/useForgotPasswordPage";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthenticateHeader from "../../../components/auth-flow/AuthenticateHeader";

@@ -9,7 +9,7 @@ interface AuthenticateHeaderProps {
 function AuthenticateHeader({ children }: AuthenticateHeaderProps) {
   return (
     <header>
-      <Link to="/home">
+      <Link to="/category">
         <img
           className="mx-auto"
           width="180"

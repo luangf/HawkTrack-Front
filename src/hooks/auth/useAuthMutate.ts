@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword, login, register } from "../services/auth-service";
+import { forgotPassword, login, register } from "../../services/auth-service";
 
 export function useAuthMutate() {
     const mutateLoginPost = useMutation({

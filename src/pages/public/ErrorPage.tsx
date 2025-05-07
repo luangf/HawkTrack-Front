@@ -12,7 +12,7 @@ export default function ErrorPage() {
         </div>
         <Link
           className="rounded-[var(--border-radius)] border-2 p-4 text-blue-500 shadow-[var(--box-shadow)] hover:bg-amber-200"
-          to="/home"
+          to="/category"
         >
           Go to Home Page
         </Link>

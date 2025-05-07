@@ -1,6 +1,6 @@
 import { forgotPasswordSchema, ForgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
 import { useState } from "react";
-import { useAuthMutate } from "./useAuthMutate";
+import { useAuthMutate } from "@/hooks/auth/useAuthMutate";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { saveCategory, deleteCategoryById, updateCategoryById } from "../services/categories-service";
-import { CategoryDataPUT } from "../interface/categoryData";
+import { saveCategory, deleteCategoryById, updateCategoryById } from "@/services/categories-service";
+import { CategoryDataPUT } from "@/interface/categoryData";
 
 export function useCategoryMutate() {
     const queryClient = useQueryClient();

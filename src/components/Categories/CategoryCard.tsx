@@ -1,4 +1,4 @@
-import useCategoryCard from "@/hooks/useCategoryCard";
+import useCategoryCard from "@/hooks/category/useCategoryCard";
 import {
   ExternalLink,
   FolderPen,
@@ -136,7 +136,7 @@ function CategoryCard({ category }: CategoryCardProps) {
         <button
           className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)] bg-amber-700 shadow-[var(--box-shadow)]"
           type="button"
-          onClick={handleOpenCategory}
+          onClick={() => handleOpenCategory(category.id)}
         >
           <ExternalLink size={40} />
         </button>

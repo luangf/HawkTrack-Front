@@ -1,13 +1,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useCategoryMutate } from "./useCategoryMutate";
+import { useCategoryMutate } from "@/hooks/category/useCategoryMutate";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { categoryCardSchema, CategoryCardSchema } from "@/schemas/categorySchema";
 
-export default function useHomePage() {
+export default function useCategories() {
     //const location = useLocation();
     const navigate = useNavigate();
 
