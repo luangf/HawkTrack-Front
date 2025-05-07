@@ -1,6 +1,6 @@
-import { ForgotPasswordSchema } from "../pages/public/forgot-pass/ForgotPasswordPage";
-import { LoginSchema } from "../pages/public/LoginPage";
-import { RegisterSchema } from "../pages/public/RegisterPage";
+import { ForgotPasswordSchema } from "../components/auth-flow/forgot-pass/ForgotPassword";
+import { LoginSchema } from "../components/auth-flow/login/Login";
+import { RegisterSchema } from "../components/auth-flow/register/Register";
 import { api } from "./api-config";
 
 const ENDPOINT_URL: string = "/auth";

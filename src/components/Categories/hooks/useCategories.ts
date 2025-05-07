@@ -1,7 +1,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useCategoryMutate } from "@/hooks/category/useCategoryMutate";
+import { useCategoryMutate } from "@/components/categories/hooks/useCategoryMutate";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";

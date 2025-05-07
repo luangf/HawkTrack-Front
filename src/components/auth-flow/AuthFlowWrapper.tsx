@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import Footer from "../general/Footer";
 
-interface LoginFlowWrapperProps {
+interface AuthFlowWrapperProps {
   children: ReactNode;
 }
 
-function LoginFlowWrapper({ children }: LoginFlowWrapperProps) {
+export default function AuthFlowWrapper({ children }: AuthFlowWrapperProps) {
   return (
     <div className="flex min-h-screen flex-col">
       <div className="flex items-center justify-center md:flex-1">
@@ -17,5 +17,3 @@ function LoginFlowWrapper({ children }: LoginFlowWrapperProps) {
     </div>
   );
 }
-
-export default LoginFlowWrapper;

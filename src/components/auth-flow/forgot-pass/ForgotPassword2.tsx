@@ -1,10 +1,9 @@
-import LoginFlowWrapper from "@/components/auth-flow/LoginFlowWrapper";
 import { MailPlus } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function ForgotPasswordPage2() {
+export default function ForgotPassword2() {
   return (
-    <LoginFlowWrapper>
+    <>
       <MailPlus size={50} />
       <p>
         Check your email for a link to reset your password. If it doesn’t appear
@@ -17,6 +16,6 @@ export default function ForgotPasswordPage2() {
       >
         Return to Login Page
       </Link>
-    </LoginFlowWrapper>
+    </>
   );
 }

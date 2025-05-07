@@ -1,14 +1,13 @@
-import useForgotPasswordPage from "@/hooks/auth/useForgotPasswordPage";
+import useForgotPassword from "@/components/auth-flow/forgot-pass/useForgotPassword";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import AuthenticateHeader from "../../../components/auth-flow/AuthenticateHeader";
-import LoginFlowWrapper from "../../../components/auth-flow/LoginFlowWrapper";
-import ErrorFinalMsg from "../../../components/general/ErrorFinalMsg";
-import FieldErrorMsg from "../../../components/general/FieldErrorMsg";
-import Label from "../../../components/general/Label";
-import PrimaryButton from "../../../components/general/PrimaryButton";
+import AuthenticateHeader from "../AuthenticateHeader";
+import ErrorFinalMsg from "../../general/ErrorFinalMsg";
+import FieldErrorMsg from "../../general/FieldErrorMsg";
+import Label from "../../general/Label";
+import PrimaryButton from "../../general/PrimaryButton";
 
-export default function ForgotPasswordPage() {
+export default function ForgotPassword() {
   const {
     loginFailError,
     register,
@@ -16,10 +15,10 @@ export default function ForgotPasswordPage() {
     errors,
     isSubmitting,
     handleForgot,
-  } = useForgotPasswordPage();
+  } = useForgotPassword();
 
   return (
-    <LoginFlowWrapper>
+    <>
       <AuthenticateHeader>Forgot Password?</AuthenticateHeader>
       <p>We will send you an email to recover your password</p>
       {loginFailError && (
@@ -67,6 +66,6 @@ export default function ForgotPasswordPage() {
       >
         Return to Login Page
       </Link>
-    </LoginFlowWrapper>
+    </>
   );
 }

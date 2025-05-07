@@ -5,7 +5,7 @@
 - utilizar ao maximo TS inference
 - function sempre, callbacks fazer a funcao como arrow function; se n for function, se for code snippet 
 - export default como principal motivo da criação do arquivo, export sem default p/outros...
-- padrao inicial: export default function RegisterPage
+- padrao inicial: export default function Register
 - Componentes em PascalCase, i.e.: DashboardMenu
 - Custom hooks em camelCase, i.e.: useAuthMutate
   - criar custom hooks. Design Patterns / clean code

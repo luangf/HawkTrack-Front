@@ -1,14 +1,14 @@
-import { registerSchema, RegisterSchema } from "@/schemas/registerSchema";
+import { loginSchema, LoginSchema } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuthMutate } from "./useAuthMutate";
+import { useAuthMutate } from "../useAuthMutate";
 
-export default function useRegisterPage() {
+export default function useLogin() {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [loginFailError, setLoginFailError] = useState(false);
-    const { mutateRegisterPost } = useAuthMutate();
+    const { mutateLoginPost } = useAuthMutate();
     const navigate = useNavigate();
 
     const {
@@ -16,14 +16,22 @@ export default function useRegisterPage() {
         handleSubmit,
         setFocus,
         formState: { errors, isSubmitting },
-    } = useForm<RegisterSchema>({ resolver: zodResolver(registerSchema) });
+    } = useForm<LoginSchema>({
+        resolver: zodResolver(loginSchema),
+        defaultValues: {
+            email: "emailtest@gmail.com",
+            password: "123456789101112",
+        },
+    });
 
-    function handleRegister(data: RegisterSchema): void {
-        mutateRegisterPost.mutate(data, {
+    function handleLogin(data: LoginSchema) {
+        mutateLoginPost.mutate(data, {
             onSuccess: (response) => {
                 sessionStorage.setItem("username", response.data.username);
                 sessionStorage.setItem("auth-token", response.data.token);
-                navigate("/category");
+                navigate("/category", {
+                    state: { showToast: true },
+                });
             },
             onError: () => {
                 setLoginFailError(true);
@@ -32,7 +40,7 @@ export default function useRegisterPage() {
     }
 
     function handlePasswordVisible() {
-        setPasswordVisible((prevPasswordVisible) => !prevPasswordVisible);
+        setPasswordVisible((prevState) => !prevState);
         // * Solução que achei para consertar o cursor indo para o inicio sempre devido ao setFocus do React Hook Form, !melhorar depois / tirar!
         // Usar setTimeout para garantir que o foco e o cursor sejam aplicados após a mudança de estado
         setTimeout(() => {
@@ -48,5 +56,5 @@ export default function useRegisterPage() {
         }, 0);
     }
 
-    return { passwordVisible, loginFailError, register, handleSubmit, errors, isSubmitting, handleRegister, handlePasswordVisible }
+    return { passwordVisible, loginFailError, register, handleSubmit, errors, isSubmitting, handleLogin, handlePasswordVisible }
 }

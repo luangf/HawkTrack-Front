@@ -1,4 +1,4 @@
-import useRegisterPage from "@/hooks/auth/useRegisterPage";
+import useRegister from "./useRegister";
 import {
   Check,
   Circle,
@@ -10,16 +10,15 @@ import {
   X,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import AuthenticateHeader from "../../components/auth-flow/AuthenticateHeader";
-import AuthenticateWith from "../../components/auth-flow/AuthenticateWith";
-import LoginFlowWrapper from "../../components/auth-flow/LoginFlowWrapper";
-import OrDivide from "../../components/auth-flow/OrDivide";
-import ErrorFinalMsg from "../../components/general/ErrorFinalMsg";
-import FieldErrorMsg from "../../components/general/FieldErrorMsg";
-import Label from "../../components/general/Label";
-import PrimaryButton from "../../components/general/PrimaryButton";
+import AuthenticateHeader from "../AuthenticateHeader";
+import AuthenticateWith from "../AuthenticateWith";
+import OrDivide from "../OrDivide";
+import ErrorFinalMsg from "../../general/ErrorFinalMsg";
+import FieldErrorMsg from "../../general/FieldErrorMsg";
+import Label from "../../general/Label";
+import PrimaryButton from "../../general/PrimaryButton";
 
-export default function RegisterPage() {
+export default function Register() {
   const {
     passwordVisible,
     loginFailError,
@@ -29,10 +28,10 @@ export default function RegisterPage() {
     isSubmitting,
     handleRegister,
     handlePasswordVisible,
-  } = useRegisterPage();
+  } = useRegister();
 
   return (
-    <LoginFlowWrapper>
+    <>
       <AuthenticateHeader>Register</AuthenticateHeader>
       <AuthenticateWith>Register with Google</AuthenticateWith>
       <OrDivide />
@@ -219,6 +218,6 @@ export default function RegisterPage() {
           Login
         </Link>
       </p>
-    </LoginFlowWrapper>
+    </>
   );
 }

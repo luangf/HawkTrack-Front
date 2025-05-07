@@ -1,4 +1,4 @@
-import useCategoryCard from "@/hooks/category/useCategoryCard";
+import useCategoryCard from "@/components/categories/hooks/useCategoryCard";
 import {
   ExternalLink,
   FolderPen,

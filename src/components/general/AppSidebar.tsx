@@ -23,7 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useCategoryData } from "@/hooks/category/useCategoryData";
+import { useCategoryData } from "@/components/categories/hooks/useCategoryData";
 import { CategoryDataGET } from "@/interface/categoryData";
 import {
   ArrowBigRight,

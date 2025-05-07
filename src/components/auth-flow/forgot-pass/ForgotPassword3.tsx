@@ -1,4 +1,3 @@
-import LoginFlowWrapper from "@/components/auth-flow/LoginFlowWrapper";
 import {
   InputOTP,
   InputOTPGroup,
@@ -6,9 +5,9 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 
-export default function ForgotPasswordPage3() {
+export default function ForgotPassword3() {
   return (
-    <LoginFlowWrapper>
+    <>
       <InputOTP maxLength={6}>
         <InputOTPGroup>
           <InputOTPSlot index={0} />
@@ -22,6 +21,6 @@ export default function ForgotPasswordPage3() {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-    </LoginFlowWrapper>
+    </>
   );
 }
