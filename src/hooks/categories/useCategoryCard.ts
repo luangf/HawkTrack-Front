@@ -1,7 +1,7 @@
 import { categoryCardSchema, CategoryCardSchema } from "@/schemas/categorySchema";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useCategoryMutate } from "@/components/categories/hooks/useCategoryMutate"
+import { useCategoryMutate } from "@/hooks/categories/useCategoryMutate"
 import { toast } from "sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";

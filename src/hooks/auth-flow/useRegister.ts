@@ -3,7 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useAuthMutate } from "@/components/auth-flow/useAuthMutate";
+import { useAuthMutate } from "./useAuthMutate";
+
 
 export default function useRegister() {
     const [passwordVisible, setPasswordVisible] = useState(false);
@@ -22,7 +23,7 @@ export default function useRegister() {
         mutateRegisterPost.mutate(data, {
             onSuccess: (response) => {
                 sessionStorage.setItem("username", response.data.username);
-                sessionStorage.setItem("auth-token", response.data.token);
+                //sessionStorage.setItem("auth-token", response.data.token); now it's on cookie
                 navigate("/category");
             },
             onError: () => {

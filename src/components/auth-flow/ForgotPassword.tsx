@@ -1,11 +1,11 @@
-import useForgotPassword from "@/components/auth-flow/forgot-pass/useForgotPassword";
+import useForgotPassword from "@/hooks/auth-flow/useForgotPassword";
 import { LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import AuthenticateHeader from "../AuthenticateHeader";
-import ErrorFinalMsg from "../../general/ErrorFinalMsg";
-import FieldErrorMsg from "../../general/FieldErrorMsg";
-import Label from "../../general/Label";
-import PrimaryButton from "../../general/PrimaryButton";
+import AuthenticateHeader from "./AuthenticateHeader";
+import ErrorFinalMsg from "../general/ErrorFinalMsg";
+import FieldErrorMsg from "../general/FieldErrorMsg";
+import Label from "../general/Label";
+import PrimaryButton from "../general/PrimaryButton";
 
 export default function ForgotPassword() {
   const {

@@ -1,9 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Cog, House, LogOut, Menu, User } from "lucide-react";
+import { useAuthMutate } from "../auth-flow/useAuthMutate";
 
 function DashboardMenu() {
+  const { mutateLogoutPost } = useAuthMutate();
+  const navigate = useNavigate();
+
   function logout() {
-    sessionStorage.clear();
+    sessionStorage.clear(); //limpar username?
+    mutateLogoutPost.mutate(undefined, {
+      onSuccess: () => {
+        navigate("/", {
+          state: { showToast: true },
+        });
+      },
+      onError: (error) => {
+        console.error("Erro ao fazer logout", error);
+      },
+    });
   }
 
   return (

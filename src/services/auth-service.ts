@@ -1,7 +1,7 @@
-import { ForgotPasswordSchema } from "../components/auth-flow/forgot-pass/ForgotPassword";
-import { LoginSchema } from "../components/auth-flow/login/Login";
-import { RegisterSchema } from "../components/auth-flow/register/Register";
+import { RegisterSchema } from "@/schemas/registerSchema";
 import { api } from "./api-config";
+import { ForgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
+import { LoginSchema } from "@/schemas/loginSchema";
 
 const ENDPOINT_URL: string = "/auth";
 
@@ -15,4 +15,8 @@ export async function register(data: RegisterSchema) {
 
 export async function forgotPassword(data: ForgotPasswordSchema) {
     return await api.post(`${ENDPOINT_URL}/forgot`, data);
+}
+
+export async function logout() {
+    return await api.post(`${ENDPOINT_URL}/logout`);
 }

@@ -1,4 +1,4 @@
-import useCategories from "@/components/categories/hooks/useCategories";
+import useCategories from "@/hooks/categories/useCategories";
 import { FolderPen, LoaderCircle, MessageCircleMore } from "lucide-react";
 import AllCardsCategories from "../../components/categories/AllCardsCategories";
 import Footer from "../../components/general/Footer";

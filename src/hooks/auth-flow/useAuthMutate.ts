@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { forgotPassword, login, register } from "../../services/auth-service";
+import { forgotPassword, login, logout, register } from "../../services/auth-service";
 
 export function useAuthMutate() {
     const mutateLoginPost = useMutation({
@@ -14,5 +14,9 @@ export function useAuthMutate() {
         mutationFn: forgotPassword
     });
 
-    return { mutateLoginPost, mutateRegisterPost, mutateForgotPasswordPost };
+    const mutateLogoutPost = useMutation({
+        mutationFn: logout
+    });
+
+    return { mutateLoginPost, mutateRegisterPost, mutateForgotPasswordPost,mutateLogoutPost };
 }

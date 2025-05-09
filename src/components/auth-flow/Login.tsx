@@ -1,13 +1,13 @@
-import useLogin from "@/components/auth-flow/login/useLogin";
+import useLogin from "@/hooks/auth-flow/useLogin";
 import { Eye, EyeClosed, LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
-import AuthenticateHeader from "../AuthenticateHeader";
-import AuthenticateWith from "../AuthenticateWith";
-import OrDivide from "../OrDivide";
-import ErrorFinalMsg from "../../general/ErrorFinalMsg";
-import FieldErrorMsg from "../../general/FieldErrorMsg";
-import Label from "../../general/Label";
-import PrimaryButton from "../../general/PrimaryButton";
+import AuthenticateHeader from "./AuthenticateHeader";
+import AuthenticateWith from "./AuthenticateWith";
+import OrDivide from "./OrDivide";
+import ErrorFinalMsg from "../general/ErrorFinalMsg";
+import Label from "../general/Label";
+import FieldErrorMsg from "../general/FieldErrorMsg";
+import PrimaryButton from "../general/PrimaryButton";
 
 export default function Login() {
   const {

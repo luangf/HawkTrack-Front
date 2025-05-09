@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import TestsPage from "./pages/private/TestsPage";
 import ErrorPage from "./pages/public/ErrorPage";
-import Login from "./components/auth-flow/login/Login";
-import Register from "./components/auth-flow/register/Register";
-import ForgotPassword from "./components/auth-flow/forgot-pass/ForgotPassword";
-import ForgotPassword2 from "./components/auth-flow/forgot-pass/ForgotPassword2";
-import ForgotPassword3 from "./components/auth-flow/forgot-pass/ForgotPassword3";
+
+import ForgotPassword from "./components/auth-flow/ForgotPassword";
+import ForgotPassword2 from "./components/auth-flow/ForgotPassword2";
+import ForgotPassword3 from "./components/auth-flow/ForgotPassword3";
 import SystemLayout from "./pages/private/SystemLayout";
 import Categories from "./components/categories/Categories";
 import Items from "./components/items/Items";
 import PublicLayout from "./pages/public/PublicLayout";
+import Login from "./components/auth-flow/Login";
+import Register from "./components/auth-flow/Register";
 
 export const router = createBrowserRouter([
   {
@@ -33,9 +34,4 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   { path: "/tests", element: <TestsPage /> },
-  // { path: "/", element: <Login />, errorElement: <ErrorPage /> },
-  // { path: "/register", element: <Register /> },
-  // { path: "/forgot", element: <ForgotPassword /> },
-  // { path: "/forgot2", element: <ForgotPassword2 /> },
-  // { path: "/forgot3", element: <ForgotPassword3 /> },
 ]);

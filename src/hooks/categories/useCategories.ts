@@ -1,7 +1,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useCategoryMutate } from "@/components/categories/hooks/useCategoryMutate";
+import { useCategoryMutate } from "@/hooks/categories/useCategoryMutate";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -27,10 +27,11 @@ export default function useCategories() {
         toast.success("Login with success");
     }, []);
 
+    /* logica antiga antes do cookie
     const token = sessionStorage.getItem("auth-token");
     if (!token) {
         navigate("/");
-    }
+    }*/
 
     function handleSaveCategory(data: CategoryCardSchema) {
         mutatePost.mutate(data);
