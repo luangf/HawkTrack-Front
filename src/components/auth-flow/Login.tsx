@@ -8,6 +8,8 @@ import ErrorFinalMsg from "../general/ErrorFinalMsg";
 import Label from "../general/Label";
 import FieldErrorMsg from "../general/FieldErrorMsg";
 import PrimaryButton from "../general/PrimaryButton";
+import Google from "@/assets/google.svg";
+import GitHub from "@/assets/github.svg";
 
 export default function Login() {
   const {
@@ -24,7 +26,14 @@ export default function Login() {
   return (
     <>
       <AuthenticateHeader>Login</AuthenticateHeader>
-      <AuthenticateWith>Continue with Google</AuthenticateWith>
+      <AuthenticateWith type="google">
+        <img width="34" src={Google} alt="Logo of Google" />
+        Continue with Google
+      </AuthenticateWith>
+      <AuthenticateWith type="github">
+        <img width="34" src={GitHub} alt="Logo of Google" />
+        Continue with GitHub
+      </AuthenticateWith>
       <OrDivide />
       {loginFailError && (
         <ErrorFinalMsg>

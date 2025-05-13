@@ -1,8 +1,8 @@
 import { forgotPasswordSchema, ForgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
 import { useState } from "react";
-import { useAuthMutate } from "@/components/auth-flow/useAuthMutate";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuthMutate } from "./useAuthMutate";
 
 export default function useForgotPassword() {
     const [loginFailError, setLoginFailError] = useState(false);

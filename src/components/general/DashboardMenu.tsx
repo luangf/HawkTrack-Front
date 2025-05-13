@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Cog, House, LogOut, Menu, User } from "lucide-react";
-import { useAuthMutate } from "../auth-flow/useAuthMutate";
+import { useAuthMutate } from "@/hooks/auth-flow/useAuthMutate";
+
 
 function DashboardMenu() {
   const { mutateLogoutPost } = useAuthMutate();

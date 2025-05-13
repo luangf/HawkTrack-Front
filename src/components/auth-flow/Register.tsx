@@ -1,4 +1,3 @@
-
 import useRegister from "@/hooks/auth-flow/useRegister";
 import {
   Check,
@@ -18,7 +17,7 @@ import ErrorFinalMsg from "../general/ErrorFinalMsg";
 import Label from "../general/Label";
 import FieldErrorMsg from "../general/FieldErrorMsg";
 import PrimaryButton from "../general/PrimaryButton";
-
+import { Progress } from "../ui/progress";
 
 export default function Register() {
   const {
@@ -105,9 +104,7 @@ export default function Register() {
         </div>
 
         <div>
-          <div className="rounded-[var(--border-radius)] border-2 border-[var(--border-color)]">
-            <div className="h-3 w-1/5 rounded-[var(--border-radius)] bg-green-600"></div>
-          </div>
+          <Progress value={20} />
           <small>The password must have at least:</small>
           <div>
             <div className="flex items-center gap-1">
