@@ -99,7 +99,6 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarGroup>SidebarGroup on SidebarContent</SidebarGroup>
       </SidebarContent>
       <SidebarSeparator />
       <SidebarFooter>

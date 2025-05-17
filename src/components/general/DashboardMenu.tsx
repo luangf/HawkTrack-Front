@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Cog, House, LogOut, Menu, User } from "lucide-react";
 import { useAuthMutate } from "@/hooks/auth-flow/useAuthMutate";
-
+import { ModeToggle } from "../ui/mode-toggle";
+import MenuUserImage from "./MenuUserImage";
+import { SidebarTrigger } from "../ui/sidebar";
 
 function DashboardMenu() {
   const { mutateLogoutPost } = useAuthMutate();
@@ -22,9 +24,12 @@ function DashboardMenu() {
   }
 
   return (
-    <header className="fixed bottom-0 w-full border-t-2 border-[var(--border-color)] bg-amber-500 p-2 shadow-[var(--box-shadow)] sm:static sm:mb-3 sm:border-t-0 sm:border-b-2">
+    <header className="fixed bottom-0 z-10 w-full border-t-2 border-[var(--border-color)] bg-amber-500 p-2 shadow-[var(--box-shadow)] sm:static sm:mb-3 sm:border-t-0 sm:border-b-2">
       <nav>
         <ul className="mx-auto flex max-w-[1200px] justify-between sm:justify-around">
+          <li>
+            <SidebarTrigger />
+          </li>
           <li>
             <Link className="flex flex-col items-center" to="#">
               <House />
@@ -58,6 +63,12 @@ function DashboardMenu() {
               <Menu />
               Menu
             </Link>
+          </li>
+          <li>
+            <div className="flex gap-2">
+              <ModeToggle />
+              <MenuUserImage />
+            </div>
           </li>
         </ul>
       </nav>
