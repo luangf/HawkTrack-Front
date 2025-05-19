@@ -17,6 +17,7 @@ export default function useRegister() {
         handleSubmit,
         setFocus,
         formState: { errors, isSubmitting },
+        watch
     } = useForm<RegisterSchema>({ resolver: zodResolver(registerSchema) });
 
     function handleRegister(data: RegisterSchema): void {
@@ -49,5 +50,5 @@ export default function useRegister() {
         }, 0);
     }
 
-    return { passwordVisible, loginFailError, register, handleSubmit, errors, isSubmitting, handleRegister, handlePasswordVisible }
+    return { passwordVisible, loginFailError, register, handleSubmit, errors, isSubmitting, handleRegister, handlePasswordVisible, watch }
 }

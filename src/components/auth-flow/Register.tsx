@@ -1,14 +1,5 @@
 import useRegister from "@/hooks/auth-flow/useRegister";
-import {
-  Check,
-  Circle,
-  CircleCheck,
-  CircleX,
-  Eye,
-  EyeClosed,
-  LoaderCircle,
-  X,
-} from "lucide-react";
+import { Eye, EyeClosed, LoaderCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthenticateHeader from "./AuthenticateHeader";
 import AuthenticateWith from "./AuthenticateWith";
@@ -17,7 +8,9 @@ import ErrorFinalMsg from "../general/ErrorFinalMsg";
 import Label from "../general/Label";
 import FieldErrorMsg from "../general/FieldErrorMsg";
 import PrimaryButton from "../general/PrimaryButton";
-import { Progress } from "../ui/progress";
+import Google from "@/assets/google.svg";
+import GitHub from "@/assets/github.svg";
+import ProgressRegisterVerification from "./ProgressRegisterVerification";
 
 export default function Register() {
   const {
@@ -29,12 +22,22 @@ export default function Register() {
     isSubmitting,
     handleRegister,
     handlePasswordVisible,
+    watch,
   } = useRegister();
+
+  const watchPassword = watch("password", "");
 
   return (
     <>
       <AuthenticateHeader>Register</AuthenticateHeader>
-      <AuthenticateWith>Register with Google</AuthenticateWith>
+      <AuthenticateWith type="google">
+        <img width="34" src={Google} alt="Logo of Google" />
+        Register with Google
+      </AuthenticateWith>
+      <AuthenticateWith type="github">
+        <img width="34" src={GitHub} alt="Logo of Google" />
+        Register with GitHub
+      </AuthenticateWith>
       <OrDivide />
       {loginFailError && (
         <ErrorFinalMsg>
@@ -100,79 +103,10 @@ export default function Register() {
               )}
             </button>
           </div>
-          <FieldErrorMsg>{errors.password?.message}</FieldErrorMsg>
+          {/* <FieldErrorMsg>{errors.password?.message}</FieldErrorMsg> */}
         </div>
 
-        <div>
-          <Progress value={20} />
-          <small>The password must have at least:</small>
-          <div>
-            <div className="flex items-center gap-1">
-              {errors.password === undefined ? (
-                <>
-                  <Circle size={19} />
-                  <small>1 uppercase letters</small>
-                </>
-              ) : errors.password?.type === "hasUpperCase" ? (
-                <>
-                  <CircleX size={19} className="text-red-500" />
-                  <small className="text-red-500">1 uppercase letter</small>
-                </>
-              ) : (
-                <>
-                  <CircleCheck size={19} className="text-green-600" />
-                  <small>1 uppercase letter</small>
-                </>
-              )}
-            </div>
-
-            <div className="flex items-center gap-1">
-              {errors.password === undefined ? (
-                <>
-                  <Circle size={19} />
-                  <small>1 lowercase letter</small>
-                </>
-              ) : errors.password?.type === "hasLowerCase" ? (
-                <>
-                  <CircleX size={19} className="text-red-500" />
-                  <small className="text-red-500">1 lowercase letter</small>
-                </>
-              ) : (
-                <>
-                  <CircleCheck size={19} className="text-green-600" />
-                  <small>1 lowercase letter</small>
-                </>
-              )}
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-green-600">
-                <Check />
-              </div>
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-red-500">
-                <X />
-              </div>
-              <small>1 number</small>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-green-600">
-                <Check />
-              </div>
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-red-500">
-                <X />
-              </div>
-              <small>1 special character (e.g., ! % & @ #)</small>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-green-600">
-                <Check />
-              </div>
-              <div className="flex h-4 w-4 items-center justify-center rounded-full border bg-red-500">
-                <X />
-              </div>
-              <small>12 characters in total</small>
-            </div>
-          </div>
-        </div>
+        <ProgressRegisterVerification watchPassword={watchPassword} />
 
         <Label htmlFor="remember-me-checkbox">
           <input
