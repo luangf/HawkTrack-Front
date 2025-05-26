@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import { BookOpenText, Cookie, Languages, X } from "lucide-react";
 import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function Footer() {
   const [cookieModalActive, setCookieModalActive] = useState(false);
@@ -58,19 +67,19 @@ function Footer() {
         </p>
       </div>
 
-      <div className="flex items-center gap-1">
-        <label htmlFor="language">
-          <Languages size={30} />
-        </label>
-        <select
-          className="cursor-pointer rounded-[var(--border-radius)] border-2 border-[var(--border-color)] p-2 shadow-[var(--box-shadow)] hover:bg-amber-50"
-          name="language"
-          id="language"
-        >
-          <option value="english">English</option>
-          <option value="portugues">Português</option>
-        </select>
-      </div>
+      <Select defaultValue="english">
+        <SelectTrigger className="h-auto! w-[130px] border-2 border-[var(--border-color)] shadow-[var(--box-shadow)]!">
+          <Languages color="black" />
+          <SelectValue placeholder="English" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Languages</SelectLabel>
+            <SelectItem value="english">English</SelectItem>
+            <SelectItem value="portuguese">Portuguese</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </footer>
   );
 }

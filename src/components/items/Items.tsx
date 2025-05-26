@@ -1,12 +1,12 @@
-import useCategories from "@/hooks/categories/useCategories";
+import useItems from "@/hooks/items/useItems";
 import { FolderPen, LoaderCircle, MessageCircleMore } from "lucide-react";
-import AllCardsCategories from "../../components/categories/AllCardsCategories";
 import Footer from "../../components/general/Footer";
 import PrimaryButton from "../../components/general/PrimaryButton";
+import AllItems from "./AllItems";
 
 export default function Items() {
-  const { register, handleSubmit, errors, isSubmitting, handleSaveCategory } =
-    useCategories();
+  const { register, handleSubmit, errors, isSubmitting, handleSaveItem } =
+    useItems();
 
   return (
     <div className="flex min-h-screen flex-col items-center md:justify-center">
@@ -14,7 +14,7 @@ export default function Items() {
         <h1 className="text-center text-4xl font-bold">Create new Item</h1>
         <form
           className="flex w-full flex-col gap-3"
-          onSubmit={handleSubmit(handleSaveCategory)}
+          onSubmit={handleSubmit(handleSaveItem)}
         >
           <div className="flex flex-col gap-1">
             <label className="flex gap-1" htmlFor="name">
@@ -61,7 +61,8 @@ export default function Items() {
           </PrimaryButton>
         </form>
       </main>
-      <AllCardsCategories />
+      {/* <AllCardsCategories /> */}
+      <AllItems />
       <Footer />
     </div>
   );
