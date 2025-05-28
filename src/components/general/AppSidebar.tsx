@@ -27,6 +27,7 @@ import { useCategoryData } from "@/hooks/categories/useCategoryData";
 import { CategoryDataGET } from "@/interface/categoryData";
 import {
   ArrowBigRight,
+  ChevronDown,
   ChevronUp,
   ListCollapse,
   LoaderCircle,
@@ -65,6 +66,26 @@ export function AppSidebar() {
         <Link to="/category">
           <img src={Logo} alt="Logo" className="w-26" />
         </Link>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  Select Workspace
+                  <ChevronDown className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+                <DropdownMenuItem>
+                  <span>Workspace 1</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <span>Workspace 2</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarSeparator />
       <SidebarContent>
