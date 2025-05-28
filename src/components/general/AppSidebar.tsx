@@ -7,9 +7,11 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuAction,
   SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSkeleton,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
@@ -33,11 +35,18 @@ import {
   LoaderCircle,
   LogOut,
   MailWarning,
+  MoreHorizontal,
+  Plus,
   Settings,
   User,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "@/assets/logo.png";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
 
 export function AppSidebar() {
   const { isPending, isError, data, error } = useCategoryData();
@@ -86,45 +95,80 @@ export function AppSidebar() {
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
+        <SidebarSeparator />
       </SidebarHeader>
-      <SidebarSeparator />
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Categories</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/category">
-                    <ListCollapse />
-                    See All Categories
-                  </Link>
-                </SidebarMenuButton>
-                <SidebarMenuSub>
-                  {data
-                    .slice()
-                    .reverse()
-                    .map((category: CategoryDataGET) => (
-                      <SidebarMenuSubItem key={category.name}>
-                        <SidebarMenuSubButton asChild>
-                          <Link to="#">
-                            <ArrowBigRight />
-                            {category.name}
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger>
+                Categories
+                <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <Collapsible defaultOpen className="group/collapsible">
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton asChild>
+                          <Link to="/category">
+                            <ListCollapse />
+                            See All Categories
                           </Link>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                </SidebarMenuSub>
-                <SidebarMenuBadge>{data.length}</SidebarMenuBadge>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {data
+                            .slice()
+                            .reverse()
+                            .map((category: CategoryDataGET) => (
+                              <SidebarMenuSubItem key={category.name}>
+                                <SidebarMenuSubButton asChild>
+                                  <Link to="#">
+                                    <ArrowBigRight />
+                                    {category.name.length > 13
+                                      ? `${category.name.slice(0, 13)}...`
+                                      : category.name}
+                                  </Link>
+                                </SidebarMenuSubButton>
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <SidebarMenuAction>
+                                      <MoreHorizontal />
+                                    </SidebarMenuAction>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent
+                                    side="right"
+                                    align="start"
+                                  >
+                                    <DropdownMenuItem>
+                                      <span>Edit Project</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                      <span>Delete Project</span>
+                                    </DropdownMenuItem>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              </SidebarMenuSubItem>
+                            ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                      <SidebarMenuBadge>{data.length}</SidebarMenuBadge>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
       </SidebarContent>
-      <SidebarSeparator />
       <SidebarFooter>
+        <SidebarSeparator />
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <SidebarMenuButton>
               <User />
               {sessionStorage.getItem("username")}
